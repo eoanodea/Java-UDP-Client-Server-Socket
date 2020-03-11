@@ -29,19 +29,20 @@ public class UDPClient {
         byte[] sendData = new byte[1024];
         byte[] receiveData = new byte[1024];
         
-        System.out.println("Please enter a message to send to the server:");
-        sentence = inFromUser.nextLine();
-        sendData =sentence.getBytes();
-        
-        DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9876);
-        clientSocket.send(sendPacket);
-        
-        DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-        clientSocket.receive(receivePacket);
-        
-        modifiedSentence = new String(receivePacket.getData());
-        System.out.println("From Server: " + modifiedSentence);
-        clientSocket.close();
+        while(true) {
+            System.out.println("Please enter a message to send to the server:");
+            sentence = inFromUser.nextLine();
+            sendData = sentence.getBytes();
+
+            DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9876);
+            clientSocket.send(sendPacket);
+
+            DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
+            clientSocket.receive(receivePacket);
+
+            modifiedSentence = new String(receivePacket.getData());
+            System.out.println("From Server: " + modifiedSentence);
+        }
     }
     
 }

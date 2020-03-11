@@ -47,8 +47,10 @@ public class UDPServer {
             
             InetAddress IPAddress = receivePacket.getAddress();
             int port = receivePacket.getPort();
-            String capitalizedSentence = clientSentence.toUpperCase();
-            sendData = inFromUser.nextLine().getBytes();
+            
+            String sentence = inFromUser.nextLine();
+           
+            sendData = sentence.getBytes();
             
             DatagramPacket sendPacket = new DatagramPacket(
                     sendData, 
