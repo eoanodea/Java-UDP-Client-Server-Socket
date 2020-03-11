@@ -5,6 +5,7 @@
  */
 package udpserver;
 
+import java.util.Scanner;
 import java.io.*;
 import java.net.*;
 
@@ -36,10 +37,18 @@ public class UDPServer {
                     receivePacket.getLength()
             );
             
+            
+            System.out.println("Incoming Message: " + clientSentence + "\n");
+            System.out.println("Enter a message send back");
+            
+            Scanner inFromUser = new Scanner(System.in);
+            
+            
+            
             InetAddress IPAddress = receivePacket.getAddress();
             int port = receivePacket.getPort();
             String capitalizedSentence = clientSentence.toUpperCase();
-            sendData = capitalizedSentence.getBytes();
+            sendData = inFromUser.nextLine().getBytes();
             
             DatagramPacket sendPacket = new DatagramPacket(
                     sendData, 
